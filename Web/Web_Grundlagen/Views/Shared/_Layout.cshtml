@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Web_Grundlagen</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Web_Grundlagen.styles.css" asp-append-version="true" />
+</head>
+<body>
+
+    <!-- div ist ein Container (Blockelement) -> erzeugt einen Absatz 
+         span ist ein inline-Element -> erzeugt keinen Absatz
+         id ... eindeutig zugreifbar
+         class ... CSS Formatierungen können so auf mehrere Elemente angewant werden-->
+    <div id="container">
+        <heeader>
+            Kopfbereich
+        </heeader>
+        <main>
+            <nav>Navigation</nav>
+            <content>
+                <!-- Hier wird die aktuelle View dargestellt -->
+                @RenderBody()
+            </content>
+        </main>
+        <footer>
+            Fußbereich
+        </footer>
+    </div>
+
+    
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
