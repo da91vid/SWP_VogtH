@@ -25,24 +25,58 @@ body {
 
 /*
 
-    . für ID
-    # für CLass
+    # für ID
+    . für CLass
     * für alle Tags
 */
-.container{
+#container{
 
 }
 header {
-    height: 120px;
+    height: 160px;
+    border-bottom: 1px solid #67d9fa;
 }
-*{
-    border: 1px solid black;
+* {
+    /*border: 1px solid black;*/
 }
-nav{
-    width: 10%;
+nav {
+    width: 15%;
     float: left;
+    height: 650px;
+    border-right: 1px solid #67d9fa;
+    padding: 20px 0px 0px 20px;
 }
 content{
-    width: 90%;
-    float:left;
+    width: 85%;
+    float:left;    height: 650px;
+    padding: 20px
+}
+footer {
+    clear: both;
+    height: 50px;
+    text-align: right;
+    padding: 10px 20px 0px 0px;
+    border-top: 1px solid #67d9fa;
+}
+a{
+    text-decoration: none;
+    color: #000000;
+   
+}
+a:hover {
+    font-weight: bold;
+    color: #67d9fa;
+}
+nav ul li{
+    list-style-type: none;
+}
+nav ul{
+    padding: 0px;
+}
+.level1{
+    font-size: 120%;
+}
+.level2{
+    font-size: 100%;
+    padding-left: 20px;
 }

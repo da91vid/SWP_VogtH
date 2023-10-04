@@ -15,11 +15,13 @@
          id ... eindeutig zugreifbar
          class ... CSS Formatierungen können so auf mehrere Elemente angewant werden-->
     <div id="container">
-        <heeader>
+        <header>
             Kopfbereich
-        </heeader>
+        </header>
         <main>
-            <nav>Navigation</nav>
+            <nav>
+                @await Html.PartialAsync("Navigation")
+            </nav>
             <content>
                 <!-- Hier wird die aktuelle View dargestellt -->
                 @RenderBody()

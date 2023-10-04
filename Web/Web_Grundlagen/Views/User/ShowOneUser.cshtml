@@ -1,0 +1,25 @@
+﻿@model Web_Grundlagen.Models.User
+@{
+    ViewData["Title"] = "ShowOneUser";
+}
+
+<!--
+    Das model gibt den Datentyp an der an die View übergeben wird (vom Controller) wird für IntelliSence benötigt
+    das Model ist die Instanz der Daten (automatisch erzeugt)
+
+-->
+
+<h1>ShowOneUser</h1>
+
+<p>
+    <b>ID: </b> @Model.Id
+</p>
+<p>
+    <b>Name: </b> @Model.Name
+</p>
+<p>
+    <b>Birthdate: </b> @Model.Birthdate.ToLongDateString()
+</p>
+
+
+
