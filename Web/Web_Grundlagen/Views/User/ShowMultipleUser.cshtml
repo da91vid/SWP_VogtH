@@ -5,7 +5,7 @@
 }
 @if (Model != null && Model.Count > 0)
 {
-    <table>
+    <table border="solid">
         <thead>
             <tr>
                 <th colspan="4"> alle Benutzer </th>
@@ -19,6 +19,20 @@
                     <td>@u.Name</td>
                     <td>@u.Email</td>
                     <td>@u.Birthdate</td>
+
+                    <td>
+                        <form method="post" asp-controller="User" asp-action="deleteuser">
+                            <input type="hidden" name="userId" value="@u.Id" />
+                            <input type="submit" value="löschen" />
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" asp-controller="User" asp-action="changeuser">
+                            <input type="hidden" name="userId" value="@u.Id" />
+                            <input type="submit" value="ändern" />
+                        </form>
+                    </td>
+                
                 </tr>
             }
         </tbody>

@@ -1,0 +1,18 @@
+﻿@model Web_Grundlagen.Models.Message
+
+@{
+    ViewData["Title"] = "Message";
+}
+
+<h3>@Model.title</h3>
+
+<p>
+    @Model.messagetext
+</p>
+
+@if (!string.IsNullOrEmpty(Model.solution)){
+    <h3>Lösung</h3>
+    <p>
+        @Model.solution
+    </p>
+}
