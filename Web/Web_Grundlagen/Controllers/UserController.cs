@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata.Ecma335;
+using Web_Grundlagen.Extensions;
 using Web_Grundlagen.Models;
 using Web_Grundlagen.Models.Db;
 
@@ -26,6 +28,7 @@ namespace Web_Grundlagen.Controllers
                 {
                     if (u.Email == user.Email)
                     {
+                        HttpContext.Session.Set("User", u);
                         var passwordHasher = new PasswordHasher<IdentityUser>();
                         if (passwordHasher.VerifyHashedPassword(null, u.Password, user.Password) == PasswordVerificationResult.Success)
                         {
@@ -47,7 +50,7 @@ namespace Web_Grundlagen.Controllers
                     messagetext = "Kein User mit dieser Email registriert",
                 });
             }
-            return View();
+            return View(user);
 
         }
         public IActionResult Registration()
@@ -91,7 +94,7 @@ namespace Web_Grundlagen.Controllers
                 this._context.User.Add(user);
                 await this._context.SaveChangesAsync();
 
-                /// TODO: DB-Teil
+                ///DB-Teil
                 ///     ORM (EF-Core) verwendet
                 ///         C1. 3 Pakete installieren
                 ///         C2. DbContext Klasse programmieren
@@ -142,21 +145,43 @@ namespace Web_Grundlagen.Controllers
             //Daten einer Userliste vom Kontroller an die View übergeben
             return View(allusers);
         }
-        public IActionResult deleteuser() {
+        public IActionResult deleteuser(int userId) {
+            var entryToDelete = _context.User.Find(userId);
+            if (entryToDelete != null) { 
+                _context.User.Remove(entryToDelete);
+                _context.SaveChanges();
+                return View("Message", new Message()
+                {
+                    title = "User gelöscht",
+                    messagetext = "User erfolgreich gelöscht",
+                });
+            }
             return View("Message", new Message()
             {
-                title = "Login fehlgeschlagen",
-                messagetext = "Falsches Passwort",
+                title = "User id cant be null",
+                messagetext = "User Id oder User ist null",
             });
-            ///TODO USER LÖSCHEN PROGRAMMIEREN DES WAS DA ISCH ISCH LEI TEMPORÄR ZUM TESTEN
         }
-        public IActionResult changeuser() {
+        public IActionResult changeuser(int userId) {
+            var user = _context.User.Find(userId);
+            return View("Registration", user);
+        }
+        public IActionResult confirmuserchanges(User user)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.User.Update(user);
+                _ = _context.SaveChangesAsync();
+                return View("Message", new Message()
+                {
+                    title = "Änderung erfolgreich",
+                    messagetext = "1+",
+                });
+            }
             return View("Message", new Message()
             {
-                title = "Login fehlgeschlagen",
-                messagetext = "Falsches Passwort",
+                title = "Geat nit"
             });
-            ///TODO USER ÄNDERN PROGRAMMIEREN DES WAS DA ISCH ISCH LEI TEMPORÄR ZUM TESTEN
         }
     }
 }

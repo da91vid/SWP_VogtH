@@ -6,7 +6,7 @@ namespace Web_Grundlagen.Models
     {
         public int Id { get; set; } = 0;
         public string Name { get; set; } = string.Empty;
-        public string Password { get; set; }
+        public string Password { get; set; } = string.Empty;
         [NotMapped]
         public string PasswordRetype { get; set; } = string.Empty;
         public string Email { get; set; }

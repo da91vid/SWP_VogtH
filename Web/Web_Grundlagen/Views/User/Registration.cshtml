@@ -2,9 +2,20 @@
 
 @{
     ViewData["Title"] = "Registration";
+    String name = "";
+    if(@Model.Email == null)
+    {
+        name = "registration";
+    }else
+    {
+        name = "confirmuserchanges";
+        <td>* - Id: </td>
+        <td><input type="id" asp-for="Id" /></td>
+        <td><span asp-validation-for="Id"></span></td>
+    }
+    ///TODO DA WEITER MACHEN
 }
-
-<form asp-controller="user" asp-action="registration" method="post">
+<form asp-controller="user" asp-action="@name" method="post">
     <table>
         <thead>
             <tr>
@@ -14,7 +25,7 @@
         <tbody>
             <tr>
                 <td>* - Name: </td>
-                <td><input type="text" asp-for="Name"/></td>
+                <td><input type="text" asp-for="Name" placeholder="@Model.Name"/></td>
                 <td><span asp-validation-for="Name"></span></td>
             </tr>
             <tr>
@@ -24,7 +35,7 @@
             </tr>
             <tr>
                 <td>* - Passwort: </td>
-                <td><input type="test" asp-for="Password" /></td>
+                <td><input type="test" asp-for="Password"/></td>
                 <td><span asp-validation-for="Password"></span></td>
             </tr>
             <tr>
